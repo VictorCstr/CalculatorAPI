@@ -19,20 +19,28 @@ export class CalculoCasoDeUso {
       throw new ApiError(400, "Dados não informados pelo cliente");
     }
 
-    const estado = this.estadoProvisor.checarEstado(cep);
+    const estado = await this.estadoProvisor.checarEstado(cep);
 
-    const valorDeDireito = await this.calculoRepositorio.calcular(user);
+    if (estado == null) {
+      throw new ApiError(404, "Não é aceito pedidos para o estado informado");
+    }
 
-    const calculoPedido = new Produtor({
-      nome,
-      estado,
-      sacasCafe,
-      valorEmprestimo: valorDeDireito,
-      vencimentoPagamento,
-    });
+    // const valorDeDireito = await this.calculoProvisor.calcular(
+    //   estado,
+    //   sacasCafe,
+    //   vencimentoPagamento
+    // );
 
-    await this.calculoRepositorio.salvar(calculoPedido);
+    // const calculoPedido = new Produtor({
+    //   nome,
+    //   estado,
+    //   sacasCafe,
+    //   valorEmprestimo: valorDeDireito,
+    //   vencimentoPagamento,
+    // });
 
-    return calculoPedido;
+    // await this.calculoRepositorio.salvar(calculoPedido);
+
+    // return calculoPedido;
   }
 }

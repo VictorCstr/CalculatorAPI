@@ -1,12 +1,20 @@
+import { CalculoProvisor } from "../../provisores/CalculoProvisor";
+import { EstadoProvisor } from "../../provisores/EstadoProvisor";
+import { MsSqlProdutorRepositorio } from "../../repositorios/MsSqlProdutorRepositorio";
 import { CalculoCasoDeUso } from "./calculoCasoDeUso";
 
 // Repositories
-// const userRepository = new PostgresUserRepository();
+const msSqlRepositorio = new MsSqlProdutorRepositorio();
 
 // Providers
-// const calculoProvisor = ne
+const calculoProvisor = new CalculoProvisor();
+const estadoProvisor = new EstadoProvisor();
 
 //Inicializa o useCase
-const calculoCasoDeUso = new CalculoCasoDeUso(userRepository);
+const calculoCasoDeUso = new CalculoCasoDeUso(
+  msSqlRepositorio,
+  calculoProvisor,
+  estadoProvisor
+);
 
 export { calculoCasoDeUso };
