@@ -6,6 +6,18 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
+}
+
+model Produtor {
+  id                  String   @id
+  nome                String
+  estado              String
+  sacasCafe           Int
+  valorLiberado       Float
+  vencimentoPagamento DateTime
+  dataSimulacao       DateTime
+
+  @@map("produtor")
 }

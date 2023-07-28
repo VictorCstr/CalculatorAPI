@@ -25,10 +25,16 @@ export class CalculoCasoDeUso {
       throw new ApiError(404, "Não é aceito pedidos para o estado informado");
     }
 
+    let dataAtual = new Date();
+    dataAtual.setHours(dataAtual.getHours() - 3);
+
+    let vencimento = new Date(vencimentoPagamento);
+
     const valorLiberado = await this.calculoProvisor.calcular(
       estado,
       sacasCafe,
-      vencimentoPagamento
+      vencimento,
+      dataAtual
     );
 
     const calculoPedido = new Produtor({
@@ -36,7 +42,8 @@ export class CalculoCasoDeUso {
       estado,
       sacasCafe,
       valorLiberado,
-      vencimentoPagamento,
+      vencimentoPagamento: vencimento,
+      dataSimulacao: dataAtual,
     });
 
     await this.calculoRepositorio.salvar(calculoPedido);

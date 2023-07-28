@@ -1,13 +1,13 @@
 import { randomUUID } from "crypto";
-import { Estado } from "./enum/Estado";
 
 export class Produtor {
   readonly id: string;
   nome: string;
-  estado: Estado;
+  estado: string;
   sacasCafe: number;
   valorLiberado: number;
   vencimentoPagamento: Date;
+  dataSimulacao: Date;
 
   constructor(props: Omit<Produtor, "id">, id?: string) {
     Object.assign(this, props);

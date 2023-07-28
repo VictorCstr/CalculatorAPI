@@ -17,7 +17,8 @@ export class CalculoProvisor implements ICalculoProvisor {
   async calcular(
     estado: Estado,
     sacas: number,
-    dataPagamento: Date
+    dataPagamento: Date,
+    dataAtual: Date
   ): Promise<number> {
     try {
       let valorDaSaca = Object.entries(this.valorDeSacaPorEstado).find(
@@ -28,9 +29,7 @@ export class CalculoProvisor implements ICalculoProvisor {
 
       let valorTotalSemJuros = valorDaSaca[1] * sacas;
 
-      let diaAtual = new Date();
-
-      let msDeDiferenca = new Date(dataPagamento) - new Date(diaAtual);
+      let msDeDiferenca = dataPagamento - dataAtual;
 
       const diasDeDiferenca = Math.floor(msDeDiferenca / (1000 * 60 * 60 * 24));
 
@@ -41,7 +40,7 @@ export class CalculoProvisor implements ICalculoProvisor {
 
       console.log(valorTotal);
 
-      return valorTotal;
+      return Number(valorTotal.toFixed(2));
     } catch (error) {
       console.log(error);
       throw new ApiError(400, error);
