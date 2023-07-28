@@ -2,11 +2,12 @@
   "name": "teste_cultivo",
   "version": "1.0.0",
   "description": "Teste técnico para a Culttivo, API de cálculo",
-  "main": "server.js",
+  "main": "cluster.js",
   "dependencies": {
     "@prisma/client": "^4.15.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
@@ -19,10 +20,10 @@
     "typescript": "^5.0.4"
   },
   "scripts": {
-    "start": "NODE_PATH=./build node build/server.js",
+    "start": "NODE_PATH=./build node build/cluster.js",
     "build": "tsc -p .",
     "prisma": "npx prisma generate",
-    "dev": "tsnd --respawn --transpile-only src/server.ts"
+    "dev": "tsnd --respawn --transpile-only src/cluster.ts"
   },
   "keywords": [],
   "author": "",
