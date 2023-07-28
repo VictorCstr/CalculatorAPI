@@ -6,7 +6,7 @@ import { EstadoProvisor } from "../../provisores/EstadoProvisor";
 import { Produtor } from "../../entidades/Produtor";
 import { ApiError } from "../../erros";
 
-describe("Calcular Valor de Empréstimo, POST /user", () => {
+describe("Calcular Simulação de Empréstimo, POST /pedido", () => {
   let fakeRepositorio, casoDeUso, calculoProvisor, estadoProvisor;
 
   fakeRepositorio = new MockRepositorio();
@@ -74,6 +74,7 @@ describe("Calcular Valor de Empréstimo, POST /user", () => {
     const criarPedido = await casoDeUso.execute(pedido);
 
     expect(criarPedido).toBeDefined();
+    expect(criarPedido).toHaveProperty("dataSimulacao");
     expect(criarPedido.dataSimulacao).not.toBeUndefined();
   });
 
