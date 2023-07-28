@@ -196,10 +196,8 @@ describe("Calcular Simulação de Empréstimo, POST /pedido, Integração", () =
       .post("/pedido")
       .send(pedido)
       .then((res) => {
-        console.log(res);
         expect(res.statusCode).toEqual(201);
         expect(res.body.valorLiberado).toBeDefined();
-        // expect(res.body.error).toMatch(/em formato númerico/);
       });
   });
 });
