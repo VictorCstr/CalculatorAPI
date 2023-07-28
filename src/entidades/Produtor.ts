@@ -6,7 +6,7 @@ export class Produtor {
   nome: string;
   estado: Estado;
   sacasCafe: number;
-  valorEmprestimo: number;
+  valorLiberado: number;
   vencimentoPagamento: Date;
 
   constructor(props: Omit<Produtor, "id">, id?: string) {

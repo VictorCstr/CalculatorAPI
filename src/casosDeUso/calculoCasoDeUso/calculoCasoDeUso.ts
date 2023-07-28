@@ -25,22 +25,22 @@ export class CalculoCasoDeUso {
       throw new ApiError(404, "Não é aceito pedidos para o estado informado");
     }
 
-    // const valorDeDireito = await this.calculoProvisor.calcular(
-    //   estado,
-    //   sacasCafe,
-    //   vencimentoPagamento
-    // );
+    const valorLiberado = await this.calculoProvisor.calcular(
+      estado,
+      sacasCafe,
+      vencimentoPagamento
+    );
 
-    // const calculoPedido = new Produtor({
-    //   nome,
-    //   estado,
-    //   sacasCafe,
-    //   valorEmprestimo: valorDeDireito,
-    //   vencimentoPagamento,
-    // });
+    const calculoPedido = new Produtor({
+      nome,
+      estado,
+      sacasCafe,
+      valorLiberado,
+      vencimentoPagamento,
+    });
 
-    // await this.calculoRepositorio.salvar(calculoPedido);
+    await this.calculoRepositorio.salvar(calculoPedido);
 
-    // return calculoPedido;
+    return calculoPedido;
   }
 }

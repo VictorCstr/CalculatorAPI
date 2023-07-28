@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
 import { ApiError } from "../erros";
 import { IProdutorRepositorio } from "../interfaces/IProdutorRepositorio";
 import { Produtor } from "../entidades/Produtor";

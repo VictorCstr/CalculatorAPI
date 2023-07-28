@@ -5,13 +5,43 @@ import { ApiError } from "../erros";
 import { ICalculoProvisor } from "../interfaces/ICalculoProvisor";
 
 export class CalculoProvisor implements ICalculoProvisor {
+  private jurosAoDia = 0.00066031;
+
+  // private jurosAoMes = 0.00066666666666667;
+  // private jurosAoDiaExato = (1 + 0.2) ** (1 / 365) - 1;
+
+  private valorDeSacaPorEstado = { SP: 1050, MG: 1100, BA: 1080, ES: 1030 };
+
+  constructor() {}
+
   async calcular(
     estado: Estado,
     sacas: number,
     dataPagamento: Date
   ): Promise<number> {
     try {
-      throw new ApiError(400, "Method not implemented yet");
+      let valorDaSaca = Object.entries(this.valorDeSacaPorEstado).find(
+        (est) => {
+          return estado === est[0];
+        }
+      );
+
+      let valorTotalSemJuros = valorDaSaca[1] * sacas;
+
+      let diaAtual = new Date();
+
+      let msDeDiferenca = new Date(dataPagamento) - new Date(diaAtual);
+
+      const diasDeDiferenca = Math.floor(msDeDiferenca / (1000 * 60 * 60 * 24));
+
+      console.log(diasDeDiferenca);
+
+      const valorTotal =
+        valorTotalSemJuros * (1 + this.jurosAoDia) ** diasDeDiferenca;
+
+      console.log(valorTotal);
+
+      return valorTotal;
     } catch (error) {
       console.log(error);
       throw new ApiError(400, error);
