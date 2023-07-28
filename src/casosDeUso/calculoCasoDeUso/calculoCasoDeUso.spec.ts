@@ -48,7 +48,7 @@ describe("Calcular Valor de Empréstimo, POST /user", () => {
     });
   });
 
-  it("Deveria retornar um erro se o CEP informado não condizer com os Estados com preços definidos", async () => {
+  it("Deveria retornar um erro se o CEP informado não condizer com os Estados com preços de sacas definidos", async () => {
     const pedido = {
       nome: "Victor Teste de Teste",
       cep: 69900000,
@@ -61,5 +61,38 @@ describe("Calcular Valor de Empréstimo, POST /user", () => {
       expect(err.statusCode).toEqual(404);
       expect(err.msg).toMatch(/Não é aceito pedidos para o estado informado/);
     });
+  });
+
+  it("Deveria pegar a data atual para cálculo de forma automática", async () => {
+    const pedido = {
+      nome: "Victor Teste de Teste",
+      cep: 12235190,
+      sacasCafe: 2,
+      vencimentoPagamento: new Date("2023-10-20"),
+    };
+
+    const criarPedido = await casoDeUso.execute(pedido);
+
+    expect(criarPedido).toBeDefined();
+    expect(criarPedido.dataSimulacao).not.toBeUndefined();
+  });
+
+  it("Deveria calcular o valor liberado para o produtor", async () => {
+    const pedido = {
+      estado: "SP",
+      sacas: 2,
+      dataPagamento: new Date("2023-10-20"),
+      dataAtual: new Date("2023-07-28"),
+    };
+
+    const calcular = await calculoProvisor.calcular(
+      pedido.estado,
+      pedido.sacas,
+      pedido.dataPagamento,
+      pedido.dataAtual
+    );
+
+    expect(calcular).toBeDefined();
+    expect(calcular).toBeGreaterThanOrEqual(0);
   });
 });
