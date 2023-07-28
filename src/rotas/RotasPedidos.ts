@@ -1,10 +1,11 @@
 import express, { Request, Response } from "express";
 import { calculoCasoDeUso } from "../casosDeUso/calculoCasoDeUso";
 import { listarCasoDeUso } from "../casosDeUso/listarCasoDeUso";
+import verificarInputs from "../middlewares/validacaoDeInputs";
 
 const routes = express.Router();
 
-routes.post("/pedido", async (req: Request, res: Response) => {
+routes.post("/pedido", verificarInputs, async (req: Request, res: Response) => {
   try {
     const { nome, cep, sacasCafe, vencimentoPagamento } = req.body;
 
@@ -14,6 +15,7 @@ routes.post("/pedido", async (req: Request, res: Response) => {
       sacasCafe,
       vencimentoPagamento,
     });
+
     return res.status(201).json(pedido);
   } catch (err) {
     console.log(err);
