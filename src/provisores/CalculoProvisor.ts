@@ -34,12 +34,12 @@ export class CalculoProvisor implements ICalculoProvisor {
 
       const diasDeDiferenca = Math.floor(msDeDiferenca / (1000 * 60 * 60 * 24));
 
-      console.log(diasDeDiferenca);
+      // console.log(diasDeDiferenca);
 
       const valorTotal =
         valorTotalSemJuros * (1 + this.jurosAoDia) ** diasDeDiferenca;
 
-      console.log(valorTotal);
+      // console.log(valorTotal);
 
       return Number(valorTotal.toFixed(2));
     } catch (error) {

@@ -38,7 +38,7 @@ routes.get("/pedidos", async (req: Request, res: Response) => {
     logger.info("Resposta:");
     logger.info(pedidos);
 
-    return res.status(201).json(pedidos);
+    return res.status(200).json(pedidos);
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: err || "Unexpected Error" });
