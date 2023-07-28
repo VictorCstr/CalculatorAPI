@@ -10,12 +10,18 @@ export class MsSqlProdutorRepositorio implements IProdutorRepositorio {
 
   async listar(): Promise<Produtor[]> {
     try {
-      return await prisma.produtor.findMany({
+      let pedidos = await prisma.produtor.findMany({
         orderBy: {
           dataSimulacao: "desc",
         },
         take: 10,
       });
+
+      pedidos.sort(function (a, b) {
+        return Number(b.vencimentoPagamento) - Number(a.vencimentoPagamento);
+      });
+
+      return await pedidos;
     } catch (error) {
       console.log(error);
       throw new ApiError(400, error);

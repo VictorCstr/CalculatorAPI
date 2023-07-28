@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { calculoCasoDeUso } from "../casosDeUso/calculoCasoDeUso";
+import { listarCasoDeUso } from "../casosDeUso/listarCasoDeUso";
 
 const routes = express.Router();
 
@@ -20,9 +21,10 @@ routes.post("/pedido", async (req: Request, res: Response) => {
   }
 });
 
-routes.get("/", async (req: Request, res: Response) => {
+routes.get("/pedidos", async (req: Request, res: Response) => {
   try {
-    return res.status(201).json({ ok: "ok" });
+    const pedidos = await listarCasoDeUso.execute();
+    return res.status(201).json(pedidos);
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: err || "Unexpected Error" });
