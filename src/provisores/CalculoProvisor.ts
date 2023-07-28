@@ -3,6 +3,7 @@ import { Estado } from "../entidades/enum/Estado";
 import { IEstadoProvisor } from "../interfaces/IEstadoProvisor";
 import { ApiError } from "../erros";
 import { ICalculoProvisor } from "../interfaces/ICalculoProvisor";
+import logger from "../utils/logger";
 
 export class CalculoProvisor implements ICalculoProvisor {
   private jurosAoDia = 0.00066031;
@@ -29,7 +30,7 @@ export class CalculoProvisor implements ICalculoProvisor {
 
       let valorTotalSemJuros = valorDaSaca[1] * sacas;
 
-      let msDeDiferenca = dataPagamento - dataAtual;
+      let msDeDiferenca = Number(dataPagamento) - Number(dataAtual);
 
       const diasDeDiferenca = Math.floor(msDeDiferenca / (1000 * 60 * 60 * 24));
 
@@ -42,7 +43,7 @@ export class CalculoProvisor implements ICalculoProvisor {
 
       return Number(valorTotal.toFixed(2));
     } catch (error) {
-      console.log(error);
+      logger.error(error);
       throw new ApiError(400, error);
     }
   }

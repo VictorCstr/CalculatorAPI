@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../erros";
 import { IProdutorRepositorio } from "../interfaces/IProdutorRepositorio";
 import { Produtor } from "../entidades/Produtor";
+import logger from "../utils/logger";
 
 const prisma = new PrismaClient();
 
@@ -23,7 +24,7 @@ export class MsSqlProdutorRepositorio implements IProdutorRepositorio {
 
       return await pedidos;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
       throw new ApiError(400, error);
     }
   }
@@ -32,7 +33,7 @@ export class MsSqlProdutorRepositorio implements IProdutorRepositorio {
     try {
       await prisma.produtor.create({ data: dados });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
       throw new ApiError(400, error);
     }
   }

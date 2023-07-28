@@ -2,6 +2,7 @@ import axios from "axios";
 import { Estado } from "../entidades/enum/Estado";
 import { IEstadoProvisor } from "../interfaces/IEstadoProvisor";
 import { ApiError } from "../erros";
+import logger from "../utils/logger";
 
 export class EstadoProvisor implements IEstadoProvisor {
   async checarEstado(cep: number): Promise<Estado> {
@@ -17,7 +18,7 @@ export class EstadoProvisor implements IEstadoProvisor {
 
       return !estadosPermitidos.includes(uf) ? null : uf;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
       throw new ApiError(400, "Unexpected Error");
     }
   }
