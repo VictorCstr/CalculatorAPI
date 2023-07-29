@@ -25,7 +25,7 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "start": "NODE_PATH=./build node build/cluster.js",
+    "start": "node build/src/cluster.js",
     "build": "tsc -p .",
     "prisma": "npx prisma generate",
     "dev": "tsnd --respawn --transpile-only src/cluster.ts",
