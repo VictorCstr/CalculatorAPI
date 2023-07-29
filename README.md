@@ -56,7 +56,7 @@ $ npm test
 ```bash
 ** Simular **
 
-$ Path:  https://api-culttivo.azurewebsites.net/pedido http://localhost:9090/pedido
+$ Path:  https://api-culttivo.azurewebsites.net/pedido OU http://localhost:9090/pedido
 $ Método POST
 
 $ Body:
@@ -64,14 +64,14 @@ $ Body:
 #	"nome": "Teste",
 #	"cep": 37026550,
 #	"sacasCafe": 10,
-#	"vencimentoPagamento": "31-10-2025"
+#	"vencimentoPagamento": "31-10-2023"
 #}
 
 
 
 ** Listar **
 
-$ Path: https://api-culttivo.azurewebsites.net/pedidos ou http://localhost:9090/pedidos
+$ Path: https://api-culttivo.azurewebsites.net/pedidos OU http://localhost:9090/pedidos
 $ Método GET
 
 ```
