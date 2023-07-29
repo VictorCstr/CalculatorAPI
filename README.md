@@ -1,18 +1,18 @@
 <p align="center">
  <a href="#computer-o-projeto">Sobre</a> •
  <a href="#computer-tecnologias">Tecnologias usadas</a> • 
- <a href="#mag_right-para-rodar-o-projeto">Como rodar</a> • 
+ <a href="#mag_right-para-rodar-o-projeto-de-forma-local">Como rodar</a> • 
  <a href="#mag_right-rotas">Rotas</a> • 
 </p>
 
 ## :computer: O projeto
 
-- Sistema de simulação de empréstimo. Utilizando Clean Architechture com sua arquitetura desacoplada, são fornecidos dois endpoints, um com entrada de dados para calcular o valor que pode ser concedido para o consumidor baseado na quantidade de sacas de café. E outro endpoint para listagem dos ultimos 10 calculos feitos, que são ordenados pela data com maior vencimento.
+- Sistema de simulação de empréstimo. Utilizando Clean Architecture com sua arquitetura desacoplada, são fornecidos dois endpoints, um com entrada de dados para calcular o valor que pode ser concedido para o consumidor baseado na quantidade de sacas de café. E outro endpoint para listagem dos ultimos 10 calculos feitos, que são ordenados pela data com maior vencimento.
 
 ## :computer: Tecnologias
 
 - Node, Typescript, Express.
-- Clean Architechture.
+- Clean Architecture.
 - SOLID, POO.
 - Requisições com Axios.
 - SQLServer, Prisma ORM.
@@ -23,7 +23,7 @@
 - Azure SQL Server
 - Azure Container Registry e Azure App Service para Hospedagem.
 
-## :mag_right: Para rodar o projeto:
+## :mag_right: Para rodar o projeto de forma local:
 
 ```bash
 # Pré requisitos
@@ -39,12 +39,12 @@ $ cd pasta
 $ Para melhorar o teste da aplicação, foi retirado o .env de dentro do gitignore, para início imediato
 $ do sistema sem a necessidade de configuração
 
-# Faça a instalação e execução de todos os containers com o compose
-$ docker-compose up --build
+# Faça a instalação e execução do container
+$ docker build -t calculatorapi .
+$ docker run -d -it --name calculator-api-container -p 9090:9090 calculatorapi
 
 # Para rodar os testes
-$ Em outro terminal executar o comando abaixo com o compose ligado
-$ 'docker exec -it {id do container} sh -c 'npm run test'
+$ npm test
 
 ```
 
