@@ -21,7 +21,8 @@
 - Wiston para logs da aplicação
 - Cluster e Compress para melhoria de desempenho.
 - Azure SQL Server
-- Azure Container Registry e Azure App Service para Hospedagem.
+- Azure Container Registry e Azure App Service para Hospedagem do Container que está replicado.
+- Monitor com Azure Application Insights, coletando dados do container e das requisições da aplicação para monitoramento.
 
 ## :mag_right: Para rodar o projeto de forma local:
 
